@@ -38,14 +38,21 @@ Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' 
 ### Configuration and User Secrets
 
 If you have an ASP.NET Core project, you can use the `Name=<connection-string>` syntax to read the connection string from configuration.
+Do note that the connection-string in the command has to be the name you give to your connection details inside the app configuration file. 
 
 This works well with the [Secret Manager tool](/aspnet/core/security/app-secrets#secret-manager) to keep your database password separate from your codebase.
 
+### [.NET Core CLI](#tab/dotnet-core-cli)
 ```dotnetcli
 dotnet user-secrets set ConnectionStrings.Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"
 dotnet ef dbcontext scaffold Name=ConnectionStrings.Chinook Microsoft.EntityFrameworkCore.SqlServer
 ```
 
+### [Visual Studio](#tab/vs)
+```package manager console
+scaffold dbcontext Name=connection-string Microsoft.EntityFrameworkCore.SqlServer
+```
+***
 ## Provider name
 
 The second argument is the provider name. The provider name is typically the same as the provider's NuGet package name.
